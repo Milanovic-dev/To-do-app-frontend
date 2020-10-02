@@ -9,9 +9,5 @@ import Header from "../components/header";
 export default function Home() {
     const dispatch = useDispatch();
 
-    return (
-        <div>
-            <Header enabled />
-        </div>
-    );
+    return <div>Index</div>;
 }

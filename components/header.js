@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-const Header = ({ enabled }) => {
-    if (!enabled) return null;
+const Header = ({ hidden }) => {
+    if (hidden) return null;
 
     return (
         <nav style={styles.navbar}>
@@ -23,7 +23,6 @@ const Header = ({ enabled }) => {
 
 const styles = {
     navbar: {
-        position: "fixed",
         display: "flex",
         flexDirection: "row",
         height: 55,
