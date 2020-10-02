@@ -1,10 +1,8 @@
 import { SET_LOADING } from "../actionTypes";
 
-const setLoading = (active) => {
+export const setLoading = (payload) => {
     return {
         type: SET_LOADING,
-        payload: active,
+        payload,
     };
 };
-
-export default setLoading;

@@ -1,21 +1,18 @@
 import axios from "axios";
 
 const config = {
-    baseURL: "http://localhost:8000/api",
+    baseURL: process.env.API_URL,
 };
 
 class HttpService {
     constructor() {
         const client = require("axios").default.create(config);
-        client.interceptors.request.use(this.setAuthorizationHeader);
 
         this.client = client;
     }
 
-    setAuthorizationHeader(config) {
-        const token = localStorage.getItem("token");
-        config.headers.Authorization = `Bearer ${token}`;
-        return config;
+    attachHeaders(headers) {
+        Object.assign(this.client.defaults.headers, headers);
     }
 }
 
