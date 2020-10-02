@@ -5,6 +5,7 @@ import withRedux from "next-redux-wrapper";
 import withReduxSaga from "next-redux-saga";
 import configureStore from "../store/store";
 import Header from "../components/Header";
+import { appWithTranslation } from "../i18n";
 
 class MyApp extends App {
     static async getInitialProps({ Component, ctx }) {
@@ -31,4 +32,6 @@ class MyApp extends App {
     }
 }
 
-export default withRedux(configureStore)(withReduxSaga(MyApp));
+export default withRedux(configureStore)(
+    withReduxSaga(appWithTranslation(MyApp))
+);
