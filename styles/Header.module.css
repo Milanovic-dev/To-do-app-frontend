@@ -29,4 +29,9 @@
     color: #575757;
     margin-left: 10px;
     margin-right: 10px;
+    height: 100%;
+}
+
+.navbarOption:hover {
+    color: #e44232;
 }

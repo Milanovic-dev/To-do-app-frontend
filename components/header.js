@@ -1,8 +1,10 @@
 import React from "react";
-import Link from "next/link";
+import LinkHref from "./LinkHref";
 import styles from "../styles/Header.module.css";
+import { i18n, Link, withTranslation } from "../i18n";
+import { languages } from "../languages";
 
-const Header = ({ hidden }) => {
+const Header = ({ t, hidden }) => {
     if (hidden) return null;
 
     return (
@@ -11,24 +13,28 @@ const Header = ({ hidden }) => {
                 <div className={styles.navbarBrand}>todoapp</div>
             </Link>
             <div className={styles.navbarOptions}>
-                <Link href="/login">
-                    <a className={styles.navbarOption}>Login</a>
-                </Link>
-                <Link href="/register">
-                    <a className={styles.navbarOption}>Register</a>
-                </Link>
-                <select className={styles.navbarOption}>
-                    <LanguageList languages={["EN", "DE", "FR"]} />
+                <LinkHref href="/login" value={t("login")} />
+                <LinkHref href="/register" value={t("register")} />
+                <select
+                    onChange={(e) => i18n.changeLanguage(e.target.value)}
+                    className={styles.navbarOption}
+                >
+                    <LanguageList languages={languages} />
                 </select>
             </div>
         </nav>
     );
 };
 
-const LanguageList = ({ languages }) => {
-    return languages.map((item, i) => {
-        return <option selected={item === "EN"}>{item}</option>;
-    });
-};
+const LanguageList = ({ languages }) =>
+    languages.map((item, i) => (
+        <option key={i} value={item.toLowerCase()}>
+            {item}
+        </option>
+    ));
 
-export default Header;
+Header.getInitialProps = async () => ({
+    namespacesRequired: ["common", "header"],
+});
+
+export default withTranslation("header")(Header);
