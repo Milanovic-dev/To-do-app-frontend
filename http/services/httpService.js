@@ -23,9 +23,19 @@ class HttpService {
     }
 
     failResolver(error) {
-        if (error.response.status === 401) {
-            localStorage.removeItem("token");
-        }
+        try {
+            const status = error.response.status;
+            switch (status) {
+                case 401:
+                    localStorage.removeItem("token");
+                    break;
+                case 500:
+                    console.error(error);
+                default:
+                    return;
+            }
+        } catch (e) {}
+
         return Promise.reject(error);
     }
 }

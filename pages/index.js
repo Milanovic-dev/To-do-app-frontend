@@ -1,4 +1,5 @@
 import Button from "../components/Button";
+import LinkHref from "../components/LinkHref";
 import { Router } from "../i18n";
 
 export default function Home() {
@@ -8,13 +9,9 @@ export default function Home() {
                 Organize everything with <br></br> Todo App
             </h2>
             <div style={{ width: "60%", margin: "auto" }}>
-                <Button
-                    onClick={() => {
-                        Router.push("/login");
-                    }}
-                >
-                    Get Started
-                </Button>
+                <LinkHref href="/login">
+                    <Button type="button">Get Started</Button>
+                </LinkHref>
             </div>
         </div>
     );

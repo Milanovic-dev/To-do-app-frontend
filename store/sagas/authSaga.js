@@ -7,9 +7,9 @@ import { Router } from "../../i18n";
 
 function* login(action) {
     try {
+        yield put(setAuthError(""));
         yield put(setLoading(true));
         yield call(AuthService.login, action.payload);
-        yield put(setAuthError(""));
         Router.push("/");
     } catch (error) {
         if (error.response.status === 401) {

@@ -6,30 +6,19 @@ import LinkHref from "../components/LinkHref";
 import { useDispatch, useSelector } from "react-redux";
 import { login, setAuthError } from "../store/actions/authActions";
 import { setLoading } from "../store/actions/loaderActions";
-import { useEffect } from "react";
-import { createSelector } from "reselect";
+import { useCallback, useEffect } from "react";
+import { authErrorSelector } from "../store/selectors/authSelector";
+import { loadingSelector } from "../store/selectors/loaderSelector";
 
 const Login = () => {
     const dispatch = useDispatch();
+    const loginCallback = useCallback((values) => dispatch(login(values)), []);
 
-    const getAuthReducer = (state) => state.authReducer;
-    const getLoadingReducer = (state) => state.loaderReducer;
-
-    const errorSelector = createSelector(
-        getAuthReducer,
-        (authReducer) => authReducer.authError
-    );
-
-    const loadingSelector = createSelector(
-        getLoadingReducer,
-        (loaderReducer) => loaderReducer.loading
-    );
-
-    const error = useSelector(errorSelector);
+    const error = useSelector(authErrorSelector);
     const loading = useSelector(loadingSelector);
 
     useEffect(() => {
-        return function cleanup() {
+        return () => {
             dispatch(setAuthError(""));
             dispatch(setLoading(false));
         };
@@ -43,31 +32,23 @@ const Login = () => {
             <Formik
                 initialValues={{ email: "", password: "" }}
                 onSubmit={(values) => {
-                    dispatch(login(values));
+                    loginCallback(values);
                 }}
                 validationSchema={loginSchema}
             >
-                {({ errors, touched }) => (
+                {() => (
                     <Form>
                         <Field
                             as={TextField}
                             label="Email"
                             name="email"
                             type="email"
-                            error={
-                                errors.email && touched.email && errors.email
-                            }
                         ></Field>
                         <Field
                             as={TextField}
                             label="Password"
                             name="password"
                             type="password"
-                            error={
-                                errors.password &&
-                                touched.password &&
-                                errors.password
-                            }
                         ></Field>
                         <Button type="submit" loading={loading}>
                             Log in

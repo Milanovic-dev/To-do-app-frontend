@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../styles/Field.module.css";
+import { ErrorMessage, Field } from "formik";
 
 const TextField = (props) => (
     <div className={styles.field}>
@@ -7,8 +8,10 @@ const TextField = (props) => (
             {props.label}
         </label>
         <br></br>
-        <input className={styles.input} {...props} />
-        <p className="error">{props.error}</p>
+        <Field className={styles.input} {...props} />
+        <p className="error">
+            <ErrorMessage name={props.name} />
+        </p>
     </div>
 );
 

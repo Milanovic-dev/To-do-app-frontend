@@ -1,5 +1,9 @@
 import HttpService from "./httpService";
 
+const ENDPOINTS = {
+    LOGIN: "/auth/login",
+};
+
 class AuthService extends HttpService {
     constructor() {
         super();
@@ -7,10 +11,17 @@ class AuthService extends HttpService {
     }
 
     async login(payload) {
-        const data = await this.client.post("/auth/login", payload);
+        const { accessToken } = await this.client.post(
+            ENDPOINTS.LOGIN,
+            payload
+        );
 
-        const accessToken = data.access_token;
+        this.setAuthroization(accessToken);
+    }
+
+    setAuthroization(accessToken) {
         localStorage.setItem("token", accessToken);
+        this.attachHeaders({ Authorization: `Bearer ${accessToken}` });
     }
 }
 

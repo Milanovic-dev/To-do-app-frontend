@@ -1,9 +1,9 @@
 import { Link } from "../i18n";
 import styles from "../styles/Header.module.css";
 
-const LinkHref = ({ value, href }) => (
+const LinkHref = ({ children, value, href }) => (
     <Link href={href}>
-        <a className="link">{value}</a>
+        {value ? <a className="link">{value}</a> : children}
     </Link>
 );
 
