@@ -1,4 +1,5 @@
 import HttpService from "./httpService";
+import Cookie from "js-cookie";
 
 const ENDPOINTS = {
     LOGIN: "/auth/login",
@@ -24,7 +25,7 @@ class AuthService extends HttpService {
     register = (payload) => this.client.post(ENDPOINTS.REGISTER, payload);
 
     setAuthroization(accessToken) {
-        localStorage.setItem("token", accessToken);
+        Cookie.set("token", accessToken);
         this.attachHeaders({ Authorization: `Bearer ${accessToken}` });
     }
 }
