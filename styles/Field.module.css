@@ -1,0 +1,13 @@
+.input {
+    height: 35px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    min-width: 240px;
+    width: 100%;
+    padding: 15px;
+}
+
+.field {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

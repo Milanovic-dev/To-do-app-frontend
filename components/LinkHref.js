@@ -3,7 +3,7 @@ import styles from "../styles/Header.module.css";
 
 const LinkHref = ({ value, href }) => (
     <Link href={href}>
-        <a className={styles.navbarOption}>{value}</a>
+        <a className="link">{value}</a>
     </Link>
 );
 

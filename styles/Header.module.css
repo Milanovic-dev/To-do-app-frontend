@@ -1,16 +1,17 @@
 .navbar {
     display: flex;
     flex-direction: row;
-    height: 55px;
+    height: 60px;
     justify-content: center;
     width: 100%;
     background-color: rgb(253, 253, 253);
     border-bottom: 1px solid rgb(220, 220, 220);
-    padding-left: 200px;
-    padding-right: 200px;
+    padding-left: 150px;
+    padding-right: 150px;
 }
 .navbarBrand {
     flex: 1;
+    width: fit-content;
     align-items: flex-start;
     align-self: center;
     font-size: 22px;
@@ -22,6 +23,11 @@
     justify-content: flex-end;
     align-self: center;
     align-content: flex-end;
+}
+
+.navbarOptions > a {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .navbarOption {
