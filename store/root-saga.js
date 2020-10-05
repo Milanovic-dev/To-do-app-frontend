@@ -1,7 +1,6 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { all } from "redux-saga/effects";
+import authSaga from "./sagas/authSaga";
 
-function* rootSaga() {
-    console.log("Hello Sagas!");
+export default function* rootSaga() {
+    yield all([authSaga()]);
 }
-
-export default rootSaga;

@@ -1,1 +1,4 @@
 export const SET_LOADING = "SET_LOADING";
+export const REQUEST_LOGIN = "REQUEST_LOGIN";
+export const REQUEST_REGISTER = "REQUEST_REGISTER";
+export const AUTH_ERROR = "AUTH_ERROR";
