@@ -16,7 +16,7 @@
     align-self: center;
     font-size: 22px;
     font-weight: bold;
-    color: #e44232;
+    color: #2667ff;
     cursor: pointer;
 }
 .navbarOptions {
@@ -39,5 +39,5 @@
 }
 
 .navbarOption:hover {
-    color: #e44232;
+    color: #2f60d3;
 }

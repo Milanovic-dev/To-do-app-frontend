@@ -2,7 +2,7 @@
     font-size: 15px;
     font-weight: bold;
     height: 40px;
-    background-color: #e44232;
+    background-color: #2667ff;
     color: white;
     border: none;
     border-radius: 8px;
@@ -14,5 +14,5 @@
 }
 
 .button:hover {
-    background-color: #ee4b4b;
+    background-color: #1f5dec;
 }

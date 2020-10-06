@@ -1,4 +1,6 @@
 import Cookie from "js-cookie";
+import { useDispatch } from "react-redux";
+import { deleteUser } from "../../store/actions/authActions";
 
 const config = {
     baseURL: "http://localhost:8000/api",
@@ -12,6 +14,11 @@ class HttpService {
             this.failResolver
         );
         this.client = client;
+
+        const accessToken = Cookie.get("token");
+        if (accessToken) {
+            this.attachHeaders({ Authorization: `Bearer ${accessToken}` });
+        }
     }
 
     attachHeaders(headers) {
@@ -28,6 +35,7 @@ class HttpService {
             switch (status) {
                 case 401:
                     Cookie.remove("token");
+                    useDispatch(deleteUser());
                     break;
                 case 500:
                     console.error(error);
@@ -42,4 +50,4 @@ class HttpService {
     }
 }
 
-export default HttpService;
+export default new HttpService(config);

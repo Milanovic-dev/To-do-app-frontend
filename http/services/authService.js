@@ -1,16 +1,24 @@
-import HttpService from "./httpService";
+import BaseService from "./baseService";
 import Cookie from "js-cookie";
 
 const ENDPOINTS = {
     LOGIN: "/auth/login",
     REGISTER: "/auth/register",
+    ME: "/auth/me",
+    LOGOUT: "/auth/logout",
 };
 
-class AuthService extends HttpService {
+class AuthService extends BaseService {
     constructor() {
         super();
         this.login = this.login.bind(this);
         this.register = this.register.bind(this);
+        this.logout = this.logout.bind(this);
+
+        const accessToken = Cookie.get("token");
+        if (accessToken) {
+            this.setAuthroization(accessToken);
+        }
     }
 
     async login(payload) {
@@ -24,9 +32,18 @@ class AuthService extends HttpService {
 
     register = (payload) => this.client.post(ENDPOINTS.REGISTER, payload);
 
+    me = async () => await this.client.get(ENDPOINTS.ME);
+
+    logout = async () => {
+        await this.client.post(ENDPOINTS.LOGOUT);
+        this.setAuthroization(null);
+    };
+
     setAuthroization(accessToken) {
         Cookie.set("token", accessToken);
-        this.attachHeaders({ Authorization: `Bearer ${accessToken}` });
+        this.httpService.attachHeaders({
+            Authorization: `Bearer ${accessToken}`,
+        });
     }
 }
 

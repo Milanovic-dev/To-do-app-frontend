@@ -2,7 +2,7 @@ html,
 body {
     padding: 0;
     margin: 0;
-    background-color: #fcf8f3;
+    background-color: #ffffff;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
         Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -61,10 +61,105 @@ p {
     margin-bottom: 25px;
 }
 
+.separatorTodos {
+    width: 100%;
+    height: 2px;
+    border-radius: 10px;
+    background-color: #add7f6;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .link {
     color: #575757;
 }
 
 .link:hover {
-    color: #e44232;
+    color: #2667ff;
+}
+
+.todoHeader {
+    font-size: 18px;
+    margin: 0;
+}
+
+.todoUser {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.todoSort {
+    margin-right: 10px;
+    font-size: 13px;
+}
+
+.todos {
+    margin-top: 30px;
+    padding-left: 150px;
+    padding-right: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+.todoCard {
+    display: flex;
+    width: 100%;
+    height: 80px;
+    margin-top: 5px;
+    border-radius: 10px;
+    border: 1px solid rgb(240, 240, 240);
+    background-color: #f8fbff;
+    align-self: center;
+}
+
+.todoCard:hover {
+    background-color: rgb(252, 252, 252);
+}
+
+.todoMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    padding-left: 15px;
+}
+
+.todoTitle {
+    font-size: 16px;
+    margin-bottom: 5px;
+    cursor: default;
+}
+
+.todoPriority {
+    color: #2667ff;
+    font-size: 13px;
+}
+
+.todoCompleted {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: right;
+    padding-right: 15px;
+}
+
+.todoCompletedText {
+    font-size: 13px;
+    cursor: default;
+}
+
+.todoCompletedIcon {
+    width: 11px;
+    height: 11px;
+    background-color: #e44232;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.todoCompletedIcon.completed {
+    background-color: rgb(31, 187, 31);
 }

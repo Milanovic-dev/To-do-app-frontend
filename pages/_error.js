@@ -33,7 +33,7 @@ const styles = {
     },
     backToHomeText: {
         fontSize: 16,
-        color: "#E44232",
+        color: "#2667ff",
         cursor: "pointer",
     },
 };
