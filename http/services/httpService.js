@@ -1,4 +1,4 @@
-import axios from "axios";
+import Cookie from "js-cookie";
 
 const config = {
     baseURL: "http://localhost:8000/api",
@@ -27,7 +27,7 @@ class HttpService {
             const status = error.response.status;
             switch (status) {
                 case 401:
-                    localStorage.removeItem("token");
+                    Cookie.remove("token");
                     break;
                 case 500:
                     console.error(error);

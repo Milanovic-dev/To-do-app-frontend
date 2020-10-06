@@ -9,6 +9,7 @@ import { setLoading } from "../store/actions/loaderActions";
 import { useCallback, useEffect } from "react";
 import { authErrorSelector } from "../store/selectors/authSelector";
 import { loadingSelector } from "../store/selectors/loaderSelector";
+import { withAuthGuard } from "../utils/RouteGuard";
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -64,4 +65,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default withAuthGuard(Login);
