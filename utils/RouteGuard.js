@@ -1,22 +1,42 @@
 import cookies from "next-cookies";
 import { Router } from "../i18n";
 
-export const withRouteGuard = (Component) => {
-    const AuthGuard = (props) => <Component {...props} />;
+const redirectTo = (ctx, url) => {
+    if (ctx.req) {
+        ctx.res.writeHead(302, { Location: url });
+        ctx.res.end();
+    } else {
+        Router.push(url);
+    }
+};
 
-    const redirectToLogin = (ctx) => {
-        if (ctx.req) {
-            ctx.res.writeHead(302, { Location: "/login" });
-            ctx.res.end();
-        } else {
-            Router.push("/login");
-        }
-    };
+export const withNotAuthGuard = (Component) => {
+    const AuthGuard = (props) => <Component {...props} />;
 
     AuthGuard.getInitialProps = async (ctx) => {
         const token = cookies(ctx).token;
         if (!token) {
-            redirectToLogin(ctx);
+            redirectTo(ctx, "/login");
+        }
+
+        let pageProps = {};
+        if (Component.getInitialProps) {
+            pageProps = await Component.getInitialProps(ctx);
+        }
+
+        return { pageProps };
+    };
+
+    return AuthGuard;
+};
+
+export const withAuthGuard = (Component) => {
+    const AuthGuard = (props) => <Component {...props} />;
+
+    AuthGuard.getInitialProps = async (ctx) => {
+        const token = cookies(ctx).token;
+        if (token) {
+            redirectTo(ctx, "/");
         }
 
         let pageProps = {};

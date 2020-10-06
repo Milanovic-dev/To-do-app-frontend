@@ -9,6 +9,7 @@ import { setLoading } from "../store/actions/loaderActions";
 import { register, setAuthError } from "../store/actions/authActions";
 import { authErrorSelector } from "../store/selectors/authSelector";
 import { loadingSelector } from "../store/selectors/loaderSelector";
+import { withAuthGuard } from "../utils/RouteGuard";
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -87,4 +88,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default withAuthGuard(Register);
