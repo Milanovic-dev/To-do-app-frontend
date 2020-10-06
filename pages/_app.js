@@ -6,13 +6,21 @@ import withReduxSaga from "next-redux-saga";
 import configureStore from "../store/store";
 import Header from "../components/Header";
 import { appWithTranslation } from "../i18n";
+import { getUser } from "../store/actions/authActions";
+import cookies from "next-cookies";
+import authService from "../http/services/authService";
 
 class MyApp extends App {
     static async getInitialProps({ Component, ctx }) {
         let pageProps = {};
+        const cookie = cookies(ctx).token;
+        if (cookie) {
+            authService.setAuthroization(cookie);
+            ctx.store.dispatch(getUser());
+        }
 
         if (Component.getInitialProps) {
-            pageProps = await Component.getInitialProps(ctx);
+            pageProps = await Component.getInitialProps({ ctx });
         }
 
         return { hideHeader: Component.hideHeader, pageProps };

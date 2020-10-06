@@ -1,4 +1,6 @@
 {
     "login": "Prijava",
-    "register": "Registracija"
+    "register": "Registracija",
+    "todos": "Zadaci",
+    "logout": "Odjavi me"
 }

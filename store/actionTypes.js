@@ -1,4 +1,11 @@
 export const SET_LOADING = "SET_LOADING";
 export const REQUEST_LOGIN = "REQUEST_LOGIN";
 export const REQUEST_REGISTER = "REQUEST_REGISTER";
+export const LOGOUT = "LOGOUT";
 export const AUTH_ERROR = "AUTH_ERROR";
+export const GET_USER_TODOS = "GET_USER_TODOS";
+export const SAVE_TODOS = "SAVE_TODOS";
+export const TODO_ERROR = "TODO_ERROR";
+export const GET_USER = "GET_USER";
+export const SAVE_USER = "SAVE_USER";
+export const DELETE_USER = "DELETE_USER";
