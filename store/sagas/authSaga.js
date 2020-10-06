@@ -5,11 +5,11 @@ import { setLoading } from "../actions/loaderActions";
 import AuthService from "../../http/services/authService";
 import { Router } from "../../i18n";
 
-function* login(action) {
+function* login({ payload }) {
     try {
         yield put(setAuthError(""));
         yield put(setLoading(true));
-        yield call(AuthService.login, action.payload);
+        yield call(AuthService.login, payload);
         Router.push("/");
     } catch (error) {
         if (error.response.status === 401) {
@@ -20,7 +20,21 @@ function* login(action) {
     }
 }
 
-function* register() {}
+function* register({ payload }) {
+    try {
+        yield put(setAuthError(""));
+        yield put(setLoading(true));
+        yield call(AuthService.register, payload);
+        yield put(Router.push, "/login");
+    } catch (error) {
+        console.log(error);
+        if (error.response.status === 409) {
+            yield put(setAuthError("Sorry, that email is already in use."));
+        }
+    } finally {
+        yield put(setLoading(false));
+    }
+}
 
 export default function* authSaga() {
     yield all([

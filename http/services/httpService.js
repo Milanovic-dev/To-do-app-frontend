@@ -31,12 +31,14 @@ class HttpService {
                     break;
                 case 500:
                     console.error(error);
+                    break;
                 default:
-                    return;
+                    break;
             }
-        } catch (e) {}
-
-        return Promise.reject(error);
+            return Promise.reject(error);
+        } catch (e) {
+            return Promise.reject(error);
+        }
     }
 }
 
